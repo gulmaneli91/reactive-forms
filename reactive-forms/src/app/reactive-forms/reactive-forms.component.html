@@ -1,0 +1,38 @@
+<form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <label for="">
+        Nome: 
+        <input type="text" formControlName="firstName">
+
+        <span *ngIf="registrationForm.get('firstName')?.errors && (registrationForm.get('firstName')?.touched && registrationForm.get('firstName')?.dirty)">
+            Campo obrigatorio!
+        </span>
+    </label>
+
+    <br>
+    <br>
+
+    <label for="">
+        Sobrenome: 
+        <input type="text" formControlName="lastName" >
+
+    </label>
+
+    <label for="">
+        Email:
+        <input type="email" formControlName="email">
+    </label>
+
+    <br>
+    <br>
+
+    <p>
+        {{registrationForm.get('firstName')?.errors | json}}
+        {{registrationForm.get('firstName')?.touched | json}}
+        {{registrationForm.get('firstName')?.dirty | json}}
+    </p>
+    <p>
+        {{registrationForm.get('email')?.errors | json}}
+    </p>
+    <button [disabled]="registrationForm.invalid">Enviar</button>
+
+</form>
